@@ -10,3 +10,15 @@ exports.createTodo = async (req,res,next)=>{
         next(error);
     }
 }
+
+exports.getToDoList =  async (req,res,next)=>{
+    try {
+        const { userId } = req.body;
+        let todoData = await ToDoServices.getUserToDoList(userId);
+        res.json({status: true,success:todoData});
+    } catch (error) {
+        console.log(error, 'err---->');
+        next(error);
+    }
+}
+
